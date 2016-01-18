@@ -1,0 +1,49 @@
+1)
+Charshes or hangs: Watchdog system, restart if timeout
+Lost msg: Msg validation (syn/ack)
+Network cable: TCP should still be there, so same ass lost msg (if anny)
+Trolls: Make fool prof software (if possible)
+Never arrives: bad communication, should work even if everything around fails
+
+2)
+
+3)
+*What is concurrency? What is parallelism? What's the difference?
+StackOverflow says:
+Concurrency is when two or more tasks can start, run, and complete in overlapping time periods. It doesn't necessarily mean they'll ever both be running at the same instant. Eg. multitasking on a single-core machine.
+
+Parallelism is when tasks literally run at the same time, eg. on a multicore processor.
+
+*Why have machines become increasingly multicore in the past decade?
+power consumption problem, cheaper to have many "slow" units than one super fast 
+
+*What kinds of problems motivates the need for concurrent execution? (Or phrased differently: What problems do concurrency help in solving?)
+Smooth execution of multiple processes at the same time.
+Increased application throughput. 
+Divides up resources fairly. 
+Gives users the feeling of smooth execution (not hanging)
+
+*Does creating concurrent programs make the programmer's life easier? Harder? Maybe both? (Come back to this after you have worked on part 4 of this exercise)
+Harder, need to take into account that the program may be halted and resumed at any moment.
+
+*What are the differences between processes, threads, green threads, and coroutines?
+Processes: A process is an executing instance of an applicationa, a process can contain multiple threads. 
+Threads: "Lightwheight" prosess, threads within the same process share the same address space, whereas different processes do not.
+Green threads: Threads that are scheduled by a runtime library or virtual machine instead of natively by the underlying operating system. 
+Corutines: Coroutines are computer program components that generalize subroutines for nonpreemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations.
+
+*Which one of these do pthread_create() (C/POSIX), threading.Thread() (Python), go (Go) create?
+pthread_create() : thread 
+threading.Thread() (Python) : thread 
+go : corutine
+
+*How does pythons Global Interpreter Lock (GIL) influence the way a python Thread behaves?
+GIL is a mutex that prevents multiple native threads from executing Python bytecodes at once.
+
+*With this in mind: What is the workaround for the GIL (Hint: it's another module)?
+What does func GOMAXPROCS(n int) int change?
+Workaround? 
+The GOMAXPROCS variable limits the number of operating system threads that can execute user-level Go code simultaneously.
+
+5)
+Prints seemingly random value: Threads uses Round Robin, first thread loads var i into memmory, starts calcualting, is innterupted and thread 2 starts (before thread 1 stores var i back into memmory!). The value of var i is only stored when the thread is finished! Meaning it will depend on which thread finishes first etc.
