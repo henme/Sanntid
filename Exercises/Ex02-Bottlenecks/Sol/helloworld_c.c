@@ -4,15 +4,20 @@
 #include <pthread.h>
 #include <stdio.h>
 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 int i = 0;
 // Note the return type: void*
 void* someThreadFunction(){
+    pthread_mutex_lock(&mutex);
 	for(int j = 0; j < 1000000; j++) i += 1;
+    pthread_mutex_unlock(&mutex);
     return NULL;
 }
 
 void* someThreadFunction2(){
+    pthread_mutex_lock(&mutex);
 	for(int j = 0; j < 1000000; j++) i -= 1;
+    pthread_mutex_unlock(&mutex);
     return NULL;
 }
 
