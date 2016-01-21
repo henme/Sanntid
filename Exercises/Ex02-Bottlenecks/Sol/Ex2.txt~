@@ -2,7 +2,3 @@ An atomic operation? Atomicity is a guarantee of isolation from concurrent proce
 A semaphore? A way to limit the number of consumers for a specific resource (like a gate or bouncer).
 A mutex? Like a semaphore only exlusive to one user, semaphores can count higher than one.
 A critical section? Part of a multi-process program that may not be concurrently executed by more than one of the program's processes
-
-C: mutex allows only one thread, semaphores may allow several
-
-Go: 
