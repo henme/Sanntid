@@ -5,4 +5,5 @@ A critical section? Part of a multi-process program that may not be concurrently
 
 C: mutex allows only one thread, semaphores may allow several
 
-Go: 
+
+Msg passing vs. shared var: Msg passing saves us the problem of dealing with keeping track of who can write to what and when, but shared memory gives faster performance.
